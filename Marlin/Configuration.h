@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -941,7 +941,7 @@
   #define DELTA_DIAGONAL_ROD 378.459        // (mm)
 
   // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 455.21             // (mm) Get this value from G33 auto calibrate
+  #define DELTA_HEIGHT 478.78             // (mm) Get this value from G33 auto calibrate
 
   #define DELTA_ENDSTOP_ADJ { -2.92, 0.00, -0.56 } // Get these values from G33 auto calibrate
 
@@ -1307,7 +1307,7 @@
 /**
  * S-Curve Acceleration
  *
- * This option eliminates vibration during printing by fitting a BÃ©zier
+ * This option eliminates vibration during printing by fitting a Bézier
  * curve to move acceleration, producing much smoother direction changes.
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
@@ -1540,7 +1540,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 0, 0, -23.0 }
+#define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1553,13 +1553,13 @@
 #define PROBING_MARGIN 0
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE 4000
+#define XY_PROBE_FEEDRATE 9000
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST 1500
+#define Z_PROBE_FEEDRATE_FAST 3000
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
+#define Z_PROBE_FEEDRATE_SLOW 900 //(Z_PROBE_FEEDRATE_FAST / 2)
 
 /**
  * Probe Activation Switch
@@ -1623,9 +1623,9 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE    10 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  10 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE     10 // Z Clearance between multiple probes
+#define Z_CLEARANCE_DEPLOY_PROBE    15 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_BETWEEN_PROBES  15 // Z Clearance between probe points
+#define Z_CLEARANCE_MULTI_PROBE     15 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
 #define Z_PROBE_LOW_POINT          -25 // Farthest distance below the trigger-point to go before stopping
@@ -1818,7 +1818,7 @@
 #endif
 
 #if ANY(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
-  #define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
+  //#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
 #endif
 
 /**
@@ -2104,7 +2104,7 @@
   //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // When the nozzle is off the mesh, this value is used
                                           // as the Z-Height correction value.
 
-  #define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
+  //#define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
 
   /**
    * Probing not allowed within the position of an obstacle.
@@ -2143,7 +2143,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#define LCD_BED_LEVELING
+//#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -3306,7 +3306,18 @@
    */
   #define TFT_FONT  NOTOSANS
 
+  /**
+   * TFT Theme for Color_UI. Choose one of the following or add a new one to 'Marlin/src/lcd/tft/themes' directory
+   *
+   * BLUE_MARLIN  - Default theme with 'midnight blue' background
+   * BLACK_MARLIN - Theme with 'black' background
+   * ANET_BLACK   - Theme used for Anet ET4/5
+   */
+  #define TFT_THEME BLACK_MARLIN
+
   //#define TFT_SHARED_IO   // I/O is shared between TFT display and other devices. Disable async data transfer.
+
+  #define COMPACT_MARLIN_BOOT_LOGO  // Use compressed data to save Flash space
 #endif
 
 #if ENABLED(TFT_LVGL_UI)
